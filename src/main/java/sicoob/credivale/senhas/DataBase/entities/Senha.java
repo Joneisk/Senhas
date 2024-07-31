@@ -14,7 +14,7 @@ public class Senha {
     private Long id;
 
     @Column(name="senha")
-    private String senha;
+    private int senha;
 
     @Column(name="horaemissao")
     private LocalTime horaEmissao;
@@ -25,26 +25,29 @@ public class Senha {
     @Column(name="horachamada")
     private LocalTime horaChamada;
 
+    @Column(name="horafimatendimento")
+    private LocalTime horafimatendimento;
+
     @Column(name="numerochamadas")
-    private Integer numeroChamadas;
+    private int numeroChamadas;
 
     @ManyToOne
     @JoinColumn(name="tipoatendimento_id", nullable = false)
     private TipoAtendimento tipoAtendimento;
 
     @ManyToOne
-    @JoinColumn(name="atendente_idatendente", nullable = false)
+    @JoinColumn(name="atendente_idatendente", nullable = true)
     private Atendente atendente;
 
     @ManyToOne
-    @JoinColumn(name="statussenha_id", nullable = false)
+    @JoinColumn(name="statussenha_id", nullable = true)
     private StatusSenha statusSenha;
 
     public Senha() {
-        this(0L, "", null, null, null, null, null, null, null);
+        this(0L, 0,   null ,null, null, null, 0, null, null, null);
     }
 
-    public Senha(Long id, String senha, LocalTime horaEmissao, LocalDate dataEmissao, LocalTime horaChamada, Integer numeroChamadas, TipoAtendimento tipoAtendimento, Atendente atendente, StatusSenha statusSenha) {
+    public Senha(Long id, int senha,LocalTime horafimatendimento ,LocalTime horaEmissao, LocalDate dataEmissao, LocalTime horaChamada, int numeroChamadas, TipoAtendimento tipoAtendimento, Atendente atendente, StatusSenha statusSenha) {
         this.id = id;
         this.senha = senha;
         this.horaEmissao = horaEmissao;
@@ -64,11 +67,11 @@ public class Senha {
         this.id = id;
     }
 
-    public String getSenha() {
+    public int getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    public void setSenha(int senha) {
         this.senha = senha;
     }
 
@@ -96,11 +99,11 @@ public class Senha {
         this.horaChamada = horaChamada;
     }
 
-    public Integer getNumeroChamadas() {
+    public int getNumeroChamadas() {
         return numeroChamadas;
     }
 
-    public void setNumeroChamadas(Integer numeroChamadas) {
+    public void setNumeroChamadas(int numeroChamadas) {
         this.numeroChamadas = numeroChamadas;
     }
 
@@ -126,5 +129,13 @@ public class Senha {
 
     public void setStatusSenha(StatusSenha statusSenha) {
         this.statusSenha = statusSenha;
+    }
+
+    public LocalTime getHorafimatendimento() {
+        return horafimatendimento;
+    }
+
+    public void setHorafimatendimento(LocalTime horafimatendimento) {
+        this.horafimatendimento = horafimatendimento;
     }
 }

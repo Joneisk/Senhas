@@ -1,11 +1,10 @@
 package sicoob.credivale.senhas.Services;
 
 import sicoob.credivale.senhas.DataBase.entities.Atendente;
-import sicoob.credivale.senhas.DataBase.entities.Cargo;
 import sicoob.credivale.senhas.DataBase.repositories.atendenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sicoob.credivale.senhas.DataBase.repositories.cargoRepository;
+
 
 import java.util.List;
 

@@ -104,47 +104,25 @@ public class adminRestControl {
         return new ResponseEntity<>(AtenService.addAtendente(atendente), HttpStatus.OK);
     }
 
-    @PostMapping("/update-atendente")
-    public ResponseEntity<Object> updateAtendente(@RequestBody Atendente atendente) {
+    @PostMapping("/active-desactive-atendente")
+    public ResponseEntity<Object> desactiveAtendente(@RequestParam(value = "email") String email) {
         try {
-            if (atendente.getEmail() == null || atendente.getEmail().isEmpty()) {
+            if (email == null || email.isEmpty()) {
                 return ResponseEntity.badRequest().body("Email não pode ser nulo ou vazio.");
             }
 
-            Atendente novoAtendente = AtenService.getByEmail(atendente.getEmail());
+            Atendente novoAtendente = AtenService.getByEmail(email);
             if (novoAtendente == null) {
                 return ResponseEntity.badRequest().body("Atendente não existe.");
             }
 
-            if (!atendente.getLogin().isEmpty()) {
-                novoAtendente.setLogin(atendente.getLogin());
+            if(novoAtendente.getStatus()==1){
+                novoAtendente.setStatus(0);
             }
-            if(!atendente.getCpf().isEmpty())
+            else
             {
-                novoAtendente.setCpf(atendente.getCpf());
+                novoAtendente.setStatus(1);
             }
-            if(!atendente.getNome().isEmpty())
-            {
-                novoAtendente.setNome(atendente.getNome());
-            }
-            //arrumar o status
-            /*if(!atendente.getStatus().isEmpty())
-            {
-
-            }*/
-            novoAtendente.setStatus(atendente.getStatus());
-            if(!atendente.getSenha().isEmpty())
-            {
-                novoAtendente.setSenha(atendente.getSenha());
-            }
-            if(!atendente.getUnidade().isEmpty()){
-                novoAtendente.setUnidade(atendente.getUnidade());
-            }
-            if(!atendente.getSeqatendimento().isEmpty())
-            {
-                novoAtendente.setSeqatendimento(atendente.getSeqatendimento());
-            }
-
             AtenService.updateAtendente(novoAtendente);
             return ResponseEntity.ok("Atendente atualizado com sucesso.");
         } catch (IllegalArgumentException e) {
@@ -154,6 +132,56 @@ public class adminRestControl {
             return ResponseEntity.badRequest().body("Erro ao atualizar cargo: " + e.getMessage());
         }
     }
+
+        @PostMapping("/update-atendente")
+        public ResponseEntity<Object> updateAtendente(@RequestBody Atendente atendente) {
+            try {
+                if (atendente.getEmail() == null || atendente.getEmail().isEmpty()) {
+                    return ResponseEntity.badRequest().body("Email não pode ser nulo ou vazio.");
+                }
+
+                Atendente novoAtendente = AtenService.getByEmail(atendente.getEmail());
+                if (novoAtendente == null) {
+                    return ResponseEntity.badRequest().body("Atendente não existe.");
+                }
+
+                if (!atendente.getLogin().isEmpty()) {
+                    novoAtendente.setLogin(atendente.getLogin());
+                }
+                if(!atendente.getCpf().isEmpty())
+                {
+                    novoAtendente.setCpf(atendente.getCpf());
+                }
+                if(!atendente.getNome().isEmpty())
+                {
+                    novoAtendente.setNome(atendente.getNome());
+                }
+
+                /*if(atendente.getStatus() == 1) { // ou if(atendente.getStatus() != false) se for boolean
+                    novoAtendente.setStatus(atendente.getStatus());
+                }*/
+                novoAtendente.setStatus(1);
+                if(!atendente.getSenha().isEmpty())
+                {
+                    novoAtendente.setSenha(atendente.getSenha());
+                }
+                if(!atendente.getUnidade().isEmpty()){
+                    novoAtendente.setUnidade(atendente.getUnidade());
+                }
+                if(!atendente.getSeqatendimento().isEmpty())
+                {
+                    novoAtendente.setSeqatendimento(atendente.getSeqatendimento());
+                }
+
+                AtenService.updateAtendente(novoAtendente);
+                return ResponseEntity.ok("Atendente atualizado com sucesso.");
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().body(e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.badRequest().body("Erro ao atualizar cargo: " + e.getMessage());
+            }
+        }
 
     @GetMapping("/get-atendente")
     public ResponseEntity<Object> getAtendente(@RequestParam(value = "email") String email) {

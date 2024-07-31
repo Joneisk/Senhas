@@ -11,16 +11,16 @@ public class TipoAtendimento {
     @Column(name="id")
     private Long id;
 
-    @Column(name="descricao")
-    private String descricao;
+    @Column(name="nome")
+    private String nome;
 
     public TipoAtendimento() {
         this(0L, "");
     }
 
-    public TipoAtendimento(Long id, String descricao) {
+    public TipoAtendimento(Long id, String nome) {
         this.id = id;
-        this.descricao = descricao;
+        this.nome = nome;
     }
 
     public Long getId() {
@@ -31,11 +31,11 @@ public class TipoAtendimento {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getStatus() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setStatus(String status) {
+        this.nome = status;
     }
 }

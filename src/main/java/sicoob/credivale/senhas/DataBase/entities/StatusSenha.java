@@ -11,15 +11,15 @@ public class StatusSenha {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
-
     @Column(name="descricao")
     private String descricao;
 
+
     public StatusSenha() {
-        this(0L, "");
+        this(0L,"");
     }
 
-    public StatusSenha(Long id, String descricao) {
+    public StatusSenha(Long id,String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
@@ -32,9 +32,7 @@ public class StatusSenha {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
+    public String getDescricao() {return descricao;}
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;

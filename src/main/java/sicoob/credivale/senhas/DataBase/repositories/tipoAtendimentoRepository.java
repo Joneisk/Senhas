@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import sicoob.credivale.senhas.DataBase.entities.TipoAtendimento;
 
 
-public interface tipoatendimentoRepository extends JpaRepository<TipoAtendimento, Long> {
+public interface tipoAtendimentoRepository extends JpaRepository<TipoAtendimento, Long> {
 }
