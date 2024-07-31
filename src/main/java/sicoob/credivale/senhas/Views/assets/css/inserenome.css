@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ .form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+
+.container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.input-nome {
+    padding: 20px;
+    outline: none;
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow: -20px -20px 60px #bebebe,
+        20px 20px 60px #ffffff;
+}
+
+
+
