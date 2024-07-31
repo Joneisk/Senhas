@@ -37,7 +37,6 @@ public class    userRestControl {
         senha.setStatusSenha(status);
         return new ResponseEntity<>(senService.addSenha(senha), HttpStatus.OK);
     }
-
     @PostMapping("/chamar-senha-novamente")
     public ResponseEntity<Object> chamarSenhaNovamente(@RequestParam("id") Long id){
         try {
@@ -75,7 +74,41 @@ public class    userRestControl {
             Senha senha=senService.getById(id);
             LocalTime horaAtual=LocalTime.now();
             senha.setHorafimatendimento(horaAtual);
-            StatusSenha status= statusService.getById(3L);
+
+            //Caso alguém tente finalizar uma senha que ainda não foi chamada.
+            StatusSenha status=senha.getStatusSenha();
+            if(status.getId()==1){
+                return ResponseEntity.badRequest().body("A senha ainda não foi chamada, não é possivel finalizar.");
+            }
+            status= statusService.getById(3L);
+            senha.setStatusSenha(status);
+            senService.updateSenha(senha);
+            return ResponseEntity.ok(senha);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Erro ao finalizar senha: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/finaliza2-senha")
+    public ResponseEntity<Object> finaliza2Senha(@RequestParam("id") Long id) {
+        try {
+            if(id==null)
+            {
+                return ResponseEntity.badRequest().body("Id não pode ser nulo.");
+            }
+            Senha senha=senService.getById(id);
+
+            StatusSenha status=senha.getStatusSenha();
+            if(status.getId()==3){
+                return ResponseEntity.badRequest().body("Senha já foi finalizada.");
+            }
+            if(status.getId()==1){
+                return ResponseEntity.badRequest().body("A senha ainda não foi chamada, não é possivel finalizar.");
+            }
+            status= statusService.getById(4L);
             senha.setStatusSenha(status);
             senService.updateSenha(senha);
             return ResponseEntity.ok(senha);
