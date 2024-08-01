@@ -59,4 +59,9 @@ public class senhaService {
     public List<Senha> getAll() {
         return senhaRepo.findAll();
     }
+
+    public List<Senha> getAllByTipoAtendimentoId(Long tipoAtendimentoId) {
+        return senhaRepo.findByTipoAtendimentoId(tipoAtendimentoId);
+    }
+
 }
