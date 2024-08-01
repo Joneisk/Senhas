@@ -28,6 +28,13 @@ public class senhaService {
         return senhaRepo.findById(id).orElse(null);
     }
 
+    public Senha getLastSenha() {
+        List<Senha> senhas = senhaRepo.findLastSenha();
+        if (senhas.isEmpty()) {
+            return null;
+        }
+        return senhas.get(0);
+    }
 
     /*
     public Long getIdByNome(String nome) {

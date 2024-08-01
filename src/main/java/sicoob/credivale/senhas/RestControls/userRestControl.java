@@ -12,7 +12,9 @@ import sicoob.credivale.senhas.Services.cargoService;
 import sicoob.credivale.senhas.Services.senhaService;
 import sicoob.credivale.senhas.Services.statusSenhaService;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -30,15 +32,24 @@ public class    userRestControl {
     @Autowired
     private statusSenhaService statusService;
 
+        ///Senha
+        @PostMapping("/add-senha")
+        public ResponseEntity<Object> addSenha(@RequestBody Senha senha){
+            StatusSenha status;
+            status=statusService.getById(1L);
+            Senha ultimaSenha = senService.getLastSenha();
+            //Date dataAtual = new Date();
+            int novoValor = ultimaSenha.getSenha()+1;
+           /* if(!ultimaSenha.getDataEmissao().equals(dataAtual))
+            {
+                novoValor=1;
+            }*/
+            senha.setSenha(novoValor);
+            senha.setNumeroChamadas(0);
+            senha.setStatusSenha(status);
+            return new ResponseEntity<>(senService.addSenha(senha), HttpStatus.OK);
+        }
 
-    @PostMapping("/add-senha")
-    public ResponseEntity<Object> addSenha(@RequestBody Senha senha){
-        StatusSenha status;
-        status=statusService.getById(1L);
-        senha.setNumeroChamadas(0);
-        senha.setStatusSenha(status);
-        return new ResponseEntity<>(senService.addSenha(senha), HttpStatus.OK);
-    }
     @PostMapping("/chamar-senha-novamente")
     public ResponseEntity<Object> chamarSenhaNovamente(@RequestParam("id") Long id){
         try {
@@ -161,5 +172,6 @@ public class    userRestControl {
         }
         return ResponseEntity.ok(senhas);
     }
+    ////
 
 }
