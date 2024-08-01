@@ -15,6 +15,7 @@ import sicoob.credivale.senhas.Services.statusSenhaService;
 import java.time.LocalTime;
 import java.util.List;
 
+
 @RestController
 @RequestMapping(value="apis/user/")
 public class    userRestControl {
@@ -150,6 +151,7 @@ public class    userRestControl {
     public ResponseEntity<Object> getAllAtendentes() {
         return new ResponseEntity<>(senService.getAll(), HttpStatus.OK);
     }
+
 
     @GetMapping("/get-all-senhas-by-id")
     public ResponseEntity<List<Senha>> getAllByTipoAtendimentoId(@RequestParam("id") Long tipoAtendimentoId) {
