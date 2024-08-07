@@ -28,6 +28,19 @@
       width: 150px;
       padding: 20px;
     }
+
+    #mensagem {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #f0f0f0;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
   </style>
 </head>
 
@@ -39,6 +52,7 @@
   <button onclick="voltarMenu()">Menu inicial</button>
 </div>
 <div id="valor-atual">Valor atual: 0</div>
+<div id="mensagem"></div>
 
 <script src="../js/tv.js"></script>
 </body>

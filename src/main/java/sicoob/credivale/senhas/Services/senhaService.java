@@ -2,7 +2,7 @@ package sicoob.credivale.senhas.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sicoob.credivale.senhas.DataBase.entities.Cargo;
+
 
 import sicoob.credivale.senhas.DataBase.entities.Senha;
 import sicoob.credivale.senhas.DataBase.repositories.senhaRepository;
@@ -18,11 +18,6 @@ public class senhaService {
     public Senha addSenha(Senha senha) {
         return senhaRepo.save(senha);
     }
-    /*
-    public boolean existsByNome(String nome) {
-        return carRepo.existsByNome(nome);
-    }*/
-
 
     public Senha getById(Long id) {
         return senhaRepo.findById(id).orElse(null);
@@ -36,12 +31,9 @@ public class senhaService {
         return senhas.get(0);
     }
 
-    /*
-    public Long getIdByNome(String nome) {
-        Cargo cargo = carRepo.findByNome(nome);
-        return (cargo != null) ? cargo.getId() : null;
-    }*/
-
+    public Senha getLastSenhaByTipo(Long tipoAtendimentoId) {
+        return senhaRepo.findLastSenhaByTipoAtendimento(tipoAtendimentoId);
+    }
 
     public Senha updateSenha(Senha senha) {
         Senha existingSenha = senhaRepo.findById(senha.getId()).orElse(null);

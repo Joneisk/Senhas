@@ -17,4 +17,7 @@ public interface senhaRepository extends JpaRepository<Senha, Long> {
 
     @Query("SELECT s FROM Senha s ORDER BY s.id DESC")
     List<Senha> findLastSenha();
+
+    @Query("SELECT s FROM Senha s WHERE s.tipoAtendimento.id=:tipoAtendimentoId ORDER BY s.id DESC LIMIT 1")
+    Senha findLastSenhaByTipoAtendimento(@Param("tipoAtendimentoId") Long tipoAtendimentoId);
 }
