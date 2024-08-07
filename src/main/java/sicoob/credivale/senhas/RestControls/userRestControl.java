@@ -38,14 +38,12 @@ public class    userRestControl {
             StatusSenha status;
             status=statusService.getById(1L);
             Senha ultimaSenhaPorTipo = senService.getLastSenhaByTipo(senha.getTipoAtendimento().getId());
-            //Date dataAtual = new Date();
-            /*if(ultimaSenhaPorTipo.getSenha()==0){
-                ultimaSenhaPorTipo.setSenha(0);
-            }*/
             int novoValor = ultimaSenhaPorTipo.getSenha()+1;
-           /* if(!ultimaSenha.getDataEmissao().equals(dataAtual))
+            LocalDate dataAtual = LocalDate.now();
+            if(!ultimaSenhaPorTipo.getDataEmissao().equals(dataAtual))
             {
-                novoValor=1;}*/
+                novoValor=1;
+            }
             senha.setSenha(novoValor);
             senha.setNumeroChamadas(0);
             senha.setStatusSenha(status);
