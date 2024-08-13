@@ -79,7 +79,7 @@ function somaValor(opcao) {
             mensagem.style.display = 'block';
             setTimeout(() => {
                 mensagem.style.display = 'none';
-                window.location.href = '../html/index.html';
+               window.location.href = '../html/index.html';
             }, 2000);
         })
         .catch(error => {
