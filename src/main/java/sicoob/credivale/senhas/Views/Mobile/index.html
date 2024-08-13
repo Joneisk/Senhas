@@ -13,12 +13,23 @@
         box-sizing: border-box;
       }
 
+      .header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .header img{
+        margin-top: 50px;
+        width: 50%;
+      }
+
       .container {
         display: flex;
         position: absolute;
         align-items: center;
         justify-content: center;
-        top: 50%;
+        top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
@@ -85,10 +96,15 @@
   </head>
 
   <body>
+
+    <div class="header">
+      <img src="../assets/img/logo-credivale.png" alt="">
+    </div>
+
     <div class="container">
-      <button class="button-29"><a href="./tipoAtendimento.html">CAIXA</a></button>
-      <button class="button-29"><a href="./tipoAtendimento.html">ATENDIMENTO</a></button>
-      <button class="button-29"><a href="./tipoAtendimento.html">GERÊNCIA</a></button>
+      <a href="./tipoAtendimento.html"><button class="button-29">CAIXA</button></a>
+      <a href="./tipoAtendimento.html"></a><button class="button-29">ATENDIMENTO</button></a>
+      <a href="./tipoAtendimento.html"></a><button class="button-29">GERÊNCIA</button></a>
     </div>
   </body>
 </html>
