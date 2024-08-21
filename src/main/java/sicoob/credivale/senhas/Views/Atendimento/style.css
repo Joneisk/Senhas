@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  font-family: "Asap", Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 80%;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.header img:first-child {
+  height: 100px;
+}
+
+.header img:last-child {
+  height: 80px;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.info input {
+  width: 20%;
+  height: 30px;
+  padding: 8px;
+  font-size: large;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.buttons-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.buttons-row button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #63993d;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  width: 100%;
+  max-width: 100px; /* Limitar o tamanho máximo dos botões */
+}
+
+.buttons-row button:hover {
+  background-color: #587e3e;
+}
+
+.titulo-fila {
+  font-weight: 900;
+  text-align: center;
+  margin: 20px 0px 10px 0px;
+}
+.fila-espera {
+  background-color: #e0e0e0;
+  border: 0.5px solid #ccc;
+  height: 400px;
+  color: #05313a;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #05313a;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f4f4f4;
+}
+
+.senha-fila:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.botao-atendimento {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.botao-atendimento img {
+  margin-bottom: 5px;
+}
+
+.negativo {
+  background-color: #a73f3f !important;
+}
+
+.negativo:hover {
+  background-color: #742b2b !important;
+}

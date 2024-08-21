@@ -172,14 +172,26 @@ public class    userRestControl {
     }
 
 
-    @GetMapping("/get-all-senhas-by-id")
-    public ResponseEntity<List<Senha>> getAllByTipoAtendimentoId(@RequestParam("id") Long tipoAtendimentoId) {
+
+    /*
+    @GetMapping("/get-all-senhas-by-seq-tip-atend")
+    public ResponseEntity<List<Senha>> getAllByTipoAtendimentoId(@RequestParam("seqatendimento") String seqatendimento)
+    {
+
         List<Senha> senhas = senService.getAllByTipoAtendimentoId(tipoAtendimentoId);
         if (senhas.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(senhas);
+    }*/
+    @GetMapping("/get-all-senhas-by-seq-atend")
+    public ResponseEntity<List<Senha>> getAllBySeqAtendimento(@RequestParam("seqatendimento") String seqatendimento) {
+        List<Senha> senhas = senService.getAllBySeqAtendimento(seqatendimento);
+        if (senhas.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(senhas);
     }
-    ////
+
 
 }

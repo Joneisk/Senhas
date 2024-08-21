@@ -9,6 +9,8 @@ import sicoob.credivale.senhas.DataBase.entities.Cargo;
 import sicoob.credivale.senhas.Services.atendenteService;
 import sicoob.credivale.senhas.Services.cargoService;
 
+import java.util.Collections;
+
 
 @RestController
 @RequestMapping(value="apis/admin/")
@@ -24,11 +26,12 @@ public class adminRestControl {
     private cargoService cargService;
 
     @PostMapping("/add-cargo")
-    public ResponseEntity<Object> addCargo(@RequestBody Cargo cargo) {
+    public ResponseEntity<Cargo> addCargo(@RequestBody Cargo cargo) {
         if (cargService.existsByNome(cargo.getNome())) {
-            return ResponseEntity.badRequest().body("Cargo já cadastrado.");
+            return ResponseEntity.badRequest().body(null);
         }
-        return new ResponseEntity<>(cargService.addCargo(cargo), HttpStatus.OK);
+        Cargo savedCargo = cargService.addCargo(cargo);
+        return ResponseEntity.ok(savedCargo);
     }
 
     @GetMapping("/get-cargo")

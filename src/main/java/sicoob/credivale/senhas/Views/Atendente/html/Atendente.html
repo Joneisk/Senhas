@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adicionar Cargo ou Atendente</title>
+    <style>
+        /* Estilizar as opções */
+        .option {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Estilizar a janela modal */
+        .modal {
+            display: none; /* Ocultar a janela modal por padrão */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #f9f9f9;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 50%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Adicionar Cargo ou Atendente</h1>
+
+<!-- Opções -->
+<div class="option" id="add-cargo">Add Cargo</div>
+<div class="option" id="add-atendente">Add Atendente</div>
+
+<!-- Janela modal para adicionar cargo -->
+<div class="modal" id="modal-add-cargo">
+    <div class="modal-content">
+        <span class="close" id="close-modal-add-cargo">&times;</span>
+        <h2>Adicionar Cargo</h2>
+        <form id="form-add-cargo">
+            <label for="nome">Nome do Cargo:</label>
+            <input type="text" id="nome" name="nome"><br><br>
+            <label for="nivel">Nível do Cargo:</label>
+            <input type="text" id="nivel" name="nivel" maxlength="1"><br><br>
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="mensagem"></div>
+    </div>
+</div>
+
+<script src="../js/Cadastro.js"></script>
+</body>
+</html>

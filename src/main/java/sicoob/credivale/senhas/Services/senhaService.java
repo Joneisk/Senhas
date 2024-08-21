@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 import sicoob.credivale.senhas.DataBase.entities.Senha;
 import sicoob.credivale.senhas.DataBase.repositories.senhaRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 @Service
 public class senhaService {
@@ -57,6 +61,14 @@ public class senhaService {
 
     public List<Senha> getAll() {
         return senhaRepo.findAll();
+    }
+
+    public List<Senha> getAllBySeqAtendimento(String seqatendimento) {
+        String[] seqatendimentoSplit = seqatendimento.split("");
+        List<Long> ids = Arrays.stream(seqatendimentoSplit)
+                .map(Long::valueOf)
+                .collect(Collectors.toList());
+        return senhaRepo.findByTipoAtendimentoIdIn(ids);
     }
 
     public List<Senha> getAllByTipoAtendimentoId(Long tipoAtendimentoId) {

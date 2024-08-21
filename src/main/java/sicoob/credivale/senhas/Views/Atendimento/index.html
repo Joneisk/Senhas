@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Atendimento - Sicoob Credivale</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <img src="./img/logo.png" alt="Sicoob Credivale" />
+          <img src="./img/logo-app.png" alt="Sistema de senhas" />
+        </div>
+      </div>
+
+      <div class="info">
+        <input type="text" placeholder="Senha" disabled />
+        <input type="text" placeholder="Situação" disabled />
+        <input type="text" placeholder="Primeira chamada" disabled />
+        <input type="text" placeholder="Chamadas" disabled />
+      </div>
+
+      <div class="buttons-row">
+        <button class="botao-atendimento">
+          <img src="./img/chamar.png" width="20px" />Chamar
+        </button>
+
+        <button class="botao-atendimento">
+          <img src="./img/autenticar.png" width="20px" />Autenticar
+        </button>
+
+        <button class="botao-atendimento">
+          <img src="./img/iniciar.png" width="20px" />Iniciar
+        </button>
+        <button class="botao-atendimento">
+          <img src="./img/finalizar.png" width="20px" />Finalizar
+        </button>
+        <button class="botao-atendimento">
+          <img src="./img/direcionar.png" width="20px" />Direcionar
+        </button>
+        <button class="botao-atendimento negativo">
+          <img src="./img/cancelar-chamada.png" width="20px" />Cancelar Chamada
+        </button>
+        <button class="botao-atendimento negativo">
+          <img src="./img/cancelar-fila.png" width="20px" />Cancelar Fila
+        </button>
+        <button class="botao-atendimento negativo">
+          <img src="./img/sair.png" width="20px" />Sair
+        </button>
+      </div>
+      <h2 class="titulo-fila">FILA DE ESPERA</h2>
+      <div class="fila-espera">
+        <div class="senhas-group">
+          <span>
+
+            <table>
+
+              <tr>
+                <th>Senha</th>
+                <th>Hora de Emissão</th>
+                <th>Tipo de Senha</th>
+              </tr>
+
+              <tr class="senha-fila">
+                <td>N0001</td>
+                <td>10:30</td>
+                <td>Normal</td>
+              </tr>
+
+              <tr class="senha-fila">
+                <td>P1001</td>
+                <td>11:45</td>
+                <td>Prioritária</td>
+              </tr>
+
+              <tr class="senha-fila">
+                <td>G3001</td>
+                <td>12:45</td>
+                <td>Gerencial</td>
+              </tr>
+
+            </table>
+
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Selecionar todos os elementos TR da tabela que possuem a classe 'senha-fila'
+        const senhaRows = document.querySelectorAll(".senha-fila");
+        const inputSenha = document.querySelector(
+          ".info input[placeholder='Senha']"
+        );
+        const inputSituacao = document.querySelector(
+          ".info input[placeholder='Situação']"
+        );
+        const inputEmissao = document.querySelector(
+          ".info input[placeholder='Primeira chamada']"
+        );
+        const inputChamadas = document.querySelector(
+          ".info input[placeholder='Chamadas']"
+        );
+        const buttonChamar = document.querySelector(
+          "button.botao-atendimento:first-of-type"
+        );
+        const buttonCancelarChamada = document.querySelector(".negativo");
+
+        let chamadasCount = 0; // Inicializar o contador de chamadas
+        let currentRow = null; // Armazenar a linha da tabela selecionada
+        let emissaoHora = null; // Armazenar o horário de emissão
+
+        // Verificar se os elementos de input e botões foram encontrados
+        if (
+          inputSenha &&
+          inputSituacao &&
+          inputEmissao &&
+          inputChamadas &&
+          buttonChamar &&
+          buttonCancelarChamada
+        ) {
+          senhaRows.forEach(function (row) {
+            row.addEventListener("click", function () {
+              // Limpar os campos apenas se uma nova linha for selecionada
+              if (currentRow && currentRow !== row) {
+                inputSenha.value = "";
+                inputSituacao.value = "";
+                inputEmissao.value = "";
+                inputChamadas.value = "";
+                chamadasCount = 0;
+                emissaoHora = null; // Resetar o horário de emissão
+              }
+
+              currentRow = row;
+              const senha = row.cells[0].textContent; // Obter o texto da primeira célula (Senha)
+              inputSenha.value = senha;
+              inputSituacao.value = "Não chamada";
+              inputChamadas.value = chamadasCount;
+            });
+          });
+
+          // Atualizar o horário de emissão e contador de chamadas quando o botão "Chamar" for clicado
+          buttonChamar.addEventListener("click", function () {
+            if (currentRow) {
+              if (!emissaoHora) {
+                emissaoHora = new Date().toLocaleTimeString(); // Obter o horário atual
+                inputEmissao.value = emissaoHora; // Atualizar o campo de emissão
+              }
+              chamadasCount++;
+              inputChamadas.value = chamadasCount;
+              inputSituacao.value = "Chamada"; // Atualiza a situação para "Chamada"
+            }
+          });
+
+          // Resetar os valores dos inputs ao cancelar a chamada
+          buttonCancelarChamada.addEventListener("click", function () {
+            inputSenha.value = ""; // Limpar o campo
+            inputSituacao.value = ""; // Limpar o campo
+            inputEmissao.value = ""; // Limpar o campo
+            inputChamadas.value = ""; // Limpar o campo
+            chamadasCount = 0; // Resetar o contador de chamadas
+            emissaoHora = null; // Resetar o horário de emissão
+            currentRow = null; // Limpar a linha selecionada
+          });
+        } else {
+          console.error("Alguns elementos não foram encontrados.");
+        }
+      });
+    </script>
+  </body>
+</html>
