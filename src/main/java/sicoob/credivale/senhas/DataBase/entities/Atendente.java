@@ -29,7 +29,6 @@ public class Atendente {
     @Column(name="seqatendimento")
     private String seqatendimento;
 
-
     @ManyToOne
     @JoinColumn(name="cargo_id", nullable = false)
     private Cargo cargo;

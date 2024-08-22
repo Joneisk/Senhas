@@ -186,20 +186,7 @@ public class adminRestControl {
             }
         }
 
-    @GetMapping("/get-atendente")
-    public ResponseEntity<Object> getAtendente(@RequestParam(value = "email") String email) {
-        Long id = AtenService.getIdByEmail(email);
-        if (id == null) {
-            return new ResponseEntity<>("Cargo not found", HttpStatus.NOT_FOUND);
-        } else {
-            Atendente atendente = AtenService.getById(id);
-            if (atendente == null) {
-                return new ResponseEntity<>("Atendente not found", HttpStatus.NOT_FOUND);
-            } else {
-                return new ResponseEntity<>(atendente, HttpStatus.OK);
-            }
-        }
-    }
+
 
     @GetMapping("/get-all-atendentes")
     public ResponseEntity<Object> getAllAtendentes() {
