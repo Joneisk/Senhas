@@ -11,6 +11,7 @@
     <groupId>sicoob.credivale</groupId>
     <artifactId>Senhas</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>Senhas</name>
     <description>Senhas</description>
     <url/>
